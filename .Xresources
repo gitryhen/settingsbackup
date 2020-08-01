@@ -1,73 +1,63 @@
-xterm*metaSendsEscape: true
-! Xterm*renderFont: true
-! Xterm*faceName: FreeMono:size=11:antialias=true
-XTerm*termName: xterm-256color
-XTerm.vt100.locale: true
-XTerm.vt100.scrollBar: false
-!!XTerm.vt100.scrollBar.width: 8
-XTerm*cursorBlink: false
-XTerm.vt100.renderFont: false
-XTerm.vt100.selectToClipboard: true
-!XTerm.vt100.font: 7x13
-XTerm*utf8: 1
-XTerm*font: -*-terminus-medium-*-*-*-18-*-*-*-*-*-iso10646-1
-!!werkt nietXTerm*font: -*-firacode-regular-*-*-*-12-*-*-*-*-*-iso10646-1
-!!XTerm*facename: FiraCode:size=12:antialias=false
-*VT100*translations: #override Shift <Btn1Up>: exec-formatted("google-chrome '%t'", PRIMARY)
+Xft.antialias: false
+Xft.rgba: rgb
+Xft.hinting: false
+!Xft.dpi: 96
+!Xft.antialias: true
+!Xft.rgba: rgb
+!Xft.hinting: true
+!Xft.hintstyle: hintslight
 
-*foreground: #00cc00
-*foreground_bold: #a8a19f
-*cursor: #a8a19f
-*background: #1b1918
-!!background      = #1b1918
-!!*background: rgba(0, 0, 0, .7)
+XTerm.vt100.geometry: 90x50
+Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+XTerm.vt100.faceName: Terminus:size=14:antialias=false
+XTerm.vt100.font: 7x13
+URxvt*geometry: 100x40
+URxvt*saveLines: 10000
+!URxvt*font: xft:Terminus:syle=Regular:pixelsize=14
+URxvt*font: xft:Fira Code:style=Regular:pixelsize=14:antialias=true
+URxvt*boldfont: xft:Fira Code:style=Bold:pixelsize=14:antialias=true
+!URxvt*boldfont: xft:Terminus:style=Bold:pixelsize=14
+URxvt*letterSpace: -1
+URxvt*scrollBar: true
+URxvt*scrollBar_right: false
+URxvt*scrollstyle: plains
+URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
 
-!! black
-*color0: #1b1918
-*color8: #766e6b
-!! red
-*color1: #f22c40
-*color9: #f22c40
-!! green
-*color2: #5ab738
-*color10: #5ab738
-!! yellow
-*color3: #d5911a
-*color11: #d5911a
-!! blue
-*color4: #407ee7
-*color12: #407ee7
-!! magenta
-*color5: #6666ea
-*color13: #6666ea
-!! cyan
-*color6: #00ad9c
-*color14: #00ad9c
-!! white
-*color7: #a8a19f
-*color15: #f1efee
-
-URxvt.intensityStyles:	false
-! URxvt.background:       [70]#000000
-URxvt.depth:		32
-! URxvt.font: 		xft:monospace:size=11
-! URxvt.font: 		xft:inconsolata:size=11
-! URxvt.font: 		xft:FiraCode-Regular:size=11
-URxvt.font: 		xft:FiraCode-Regular:size=11
-URxvt*letterSpace:	0
-! URxvt.letterspace:	-3
-URxvt.scrollBar:	false
-URxvt.cursorColor:	cyan
-URxvt.perl-ext-common:	default,matcher,resize-font
-URxvt.perl-lib:		$HOME/.config/Scripts
-URxvt.url-launcher:	/usr/bin/xdg-open
-URxvt.matcher.button:	1
-URxvt.resize-font.smaller:	C-Down
-URxvt.resize-font.bigger:	C-Up
-
-URxvt.colorUL:		#4682B4
-rofi.color-enabled:	true
-rofi.color-window:	#000, #000, #000
-rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
-rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
-rofi.color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2

@@ -12,6 +12,15 @@
 ;;(global-display-line-numbers-mode)
 (require 'package)
 (package-initialize)
+
+(require 'mu4e)
+(setq mu4e-maildir       "~/Mail/gmail")   ;; top-level Maildir
+(setq mu4e-drafts-folder "/[Gmail]/Drafts")
+(setq mu4e-sent-folder   "/[Gmail]/Verzonden berichten")
+(setq mu4e-trash-folder  "/[Gmail]/Prullenbak")
+;;(setq mu4e-drafts-folder "/Concepten")
+;;(setq mu4e-sent-folder   "/Verzonden")
+
 ;; company
 (require 'company)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
@@ -64,11 +73,32 @@
 ;; (global-set-key (kbd "C-x s") 'save-buffer)
 
 ;; ido
-(require 'ido)
+;; ido in helm is used as a setting in group:
+;; helm completing read handlers alist
+;; symbol find file. do not activate ido and helm
+;; (require 'ido)
 (ido-vertical-mode t)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t) 
-(ido-mode 1)
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-everywhere t) 
+;; (ido-mode 1)
+
+;; helm
+(require 'helm)
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+;; (helm-mode 1) ;; nodig voor tab regel hieronder
+;; ;;(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r b") 'helm-bookmarks)
+(global-set-key (kbd "C-x m") 'helm-M-x)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+(helm-mode 1)
+(helm-flx-mode 1)
+
 
 ;; ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; ;; ;; (setq python-shell-interpreter "python"
@@ -101,7 +131,7 @@
 ;; open recent files faster (from mastering emacs 
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
  
 ;; enable recent files mode.
 (require 'recentf)
@@ -109,12 +139,12 @@
 ;; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)
 (run-at-time nil (* 10 60) 'recentf-save-list)
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
+;; (defun ido-recentf-open ()
+;;   "Use `ido-completing-read' to \\[find-file] a recent file"
+;;   (interactive)
+;;   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+;;       (message "Opening file...")
+;;     (message "Aborting")))
 
 ;; evil
 (require 'evil)
@@ -381,11 +411,27 @@
  '(custom-safe-themes
    '("b06b2483f9fb7bfceb371c8341c0f20e3a38fecd7af7ac1c67bfa028aed9f45c" default))
  '(elpy-rpc-python-command "python3")
+ '(helm-completing-read-handlers-alist
+   '((find-tag . helm-completing-read-default-find-tag)
+     (xref-find-definitions . helm-completing-read-default-find-tag)
+     (xref-find-references . helm-completing-read-default-find-tag)
+     (ggtags-find-tag-dwim . helm-completing-read-default-find-tag)
+     (tmm-menubar)
+     (find-file . ido)
+     (execute-extended-command)
+     (dired-do-rename . helm-read-file-name-handler-1)
+     (dired-do-copy . helm-read-file-name-handler-1)
+     (dired-do-symlink . helm-read-file-name-handler-1)
+     (dired-do-relsymlink . helm-read-file-name-handler-1)
+     (dired-do-hardlink . helm-read-file-name-handler-1)
+     (basic-save-buffer . helm-read-file-name-handler-1)
+     (write-file . helm-read-file-name-handler-1)
+     (write-region . helm-read-file-name-handler-1)))
  '(org-babel-load-languages '((octave . t) (python . t) (shell . t) (awk . t)))
  '(org-confirm-babel-evaluate nil)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(markdown-mode fzf ivy counsel which-key dashboard ranger w3m company-plsense graphviz-dot-mode sqlite3 org-roam pomodoro esup magit auctex flycheck smartparens paredit ac-slime ess evil evil-surround slime slime-company elpy company))
+   '(helm-swoop helm-flx helm markdown-mode fzf ivy counsel which-key dashboard ranger w3m company-plsense graphviz-dot-mode sqlite3 org-roam pomodoro esup magit auctex flycheck smartparens paredit ac-slime ess evil evil-surround slime slime-company elpy company))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces

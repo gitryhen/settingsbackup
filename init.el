@@ -131,14 +131,14 @@
 ;; open recent files faster (from mastering emacs 
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+;; (global-set-key (kbd "C-x C-r") 'recentf-open-files)
  
 ;; enable recent files mode.
 (require 'recentf)
 (recentf-mode t)
 ;; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)
-(run-at-time nil (* 10 60) 'recentf-save-list)
+;; (run-at-time nil (* 10 60) 'recentf-save-list)
 ;; (defun ido-recentf-open ()
 ;;   "Use `ido-completing-read' to \\[find-file] a recent file"
 ;;   (interactive)
@@ -403,6 +403,23 @@
 (global-set-key (kbd "<f6>") 'org-roam-node-insert)
 (setq org-roam-v2-ack t)
 
+;; reftex
+(require 'reftex)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'latex-mode-hook 'turn-on-reftex)
+
+;; Spell-check
+(require 'flyspell)
+(setq flyspell-issue-message-flag nil
+      ispell-local-dictionary "en_US"
+      ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(define-key flyspell-mode-map (kbd "C-;") 'helm-flyspell-correct)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -431,7 +448,7 @@
  '(org-confirm-babel-evaluate nil)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(helm-swoop helm-flx helm markdown-mode fzf ivy counsel which-key dashboard ranger w3m company-plsense graphviz-dot-mode sqlite3 org-roam pomodoro esup magit auctex flycheck smartparens paredit ac-slime ess evil evil-surround slime slime-company elpy company))
+   '(helm-flyspell helm-ag helm-swoop helm-flx helm markdown-mode fzf ivy counsel which-key dashboard ranger w3m company-plsense graphviz-dot-mode sqlite3 org-roam pomodoro esup magit auctex flycheck smartparens paredit ac-slime ess evil evil-surround slime slime-company elpy company))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
